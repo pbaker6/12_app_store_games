@@ -101,7 +101,7 @@ h1, h2, h3, h4 {
 
 .sub_heading {
     font-family: 'Ubuntu', sans-serif;
-    color: #593849;
+    color: #264306;
     font-weight: bold;
 }
 
@@ -109,9 +109,9 @@ h1, h2, h3, h4 {
 
 /* links in page */
 
-a:link{color: #d6d3d7;}
-a:visited{color: #ccc;}
-a:hover{color: #dfcfbc;}
+a:link{color: #264306;}
+a:visited{color: #5b7f31;}
+a:hover{color: #8f5f14;}
 
 /* side links */
 a.side {
@@ -119,8 +119,9 @@ a.side {
     font-size: 100%;
     text-decoration: none;
 }
-a.side:link, a.side:visited {color: #636263;}
-a.side:hover {color:#8a1737; }
+a.side:link {color: #264306;}
+a.side:visited {color: #5b7f31;}
+a.side:hover {color:#8f5f14; }
 
 
 /**** Results ****/
