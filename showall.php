@@ -1,6 +1,10 @@
 <?php include("topbit.php");
 
-$find_sql="SELECT * FROM `tblgames`";
+$find_sql="SELECT * FROM `tblgames`
+JOIN tblgenre ON (tblgames.genreID = tblGenre.genreID)
+JOIN tbldeveloper ON (tblgames.developerID = tbldeveloper.developerID)
+
+";
 $find_query=mysqli_query($dbconnect, $find_sql);
 $find_rs=mysqli_fetch_assoc($find_query);
 $count=mysqli_num_rows($find_query);
@@ -34,15 +38,31 @@ $count=mysqli_num_rows($find_query);
                 <span class="sub_heading">
                     <a href="<?php echo $find_rs['gameURL']; ?>">
                         <?php echo $find_rs['gameName']; ?>
+                        <br />
                     </a>
-                </span>
+                </span> - <?php echo $find_rs['gameSubTitle']; ?>
                 
-                <br />
+                <p>
+                    <b>Genre: </b>
+                    <?php echo $find_rs['genreName'] ?>
+                    <br />
+                    <b>Developer: </b>
+                    <?php echo $find_rs['developerName'] ?>     
+                    <br />
+                    <b>Rating: </b>
+                    <?php echo $find_rs['gameUserRating'] ?>  
+                    (based on <?php echo $find_rs['gameUserCount'] ?> votes)
+                    <br />
+                    <b>Cost: $</b>
                 
-                <?php echo $find_rs['genreID'] ?>
-                <?php echo $find_rs['genreName'] ?>
-                
-                
+                    <?php echo $find_rs['gamePrice'] ?>   
+                    <br />
+                    <b>In-app purchases: </b>
+                    <?php echo $find_rs['gameInAppPurchase'] 
+                    ?>  
+                </p>
+                    <hr />
+                    <?php echo $find_rs['gameDescription']?>                             
             </div> <!-- / results -->
             
             <br />
