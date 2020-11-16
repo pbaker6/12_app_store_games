@@ -67,6 +67,25 @@ $count=mysqli_num_rows($find_query);
                 </div>  <!-- / flex-container -->
                 
                 <!-- / Heading and subtitle -->
+                
+                <!-- Ratings Area -->
+                <div class="flex-container">
+                    <!-- Partial Stars Original Source: https://codepen.io/Bluetidepro/pen/GkpEa -->
+                    <div class="star-ratings-sprite">
+                    
+                    
+                    </div> <!-- / Star rating div -->
+                    
+                    <div class="actual-rating"> 
+                        (<?php echo $find_rs['gameUserRating'] ?> rating based on # ratings)
+                    
+                    
+                    </div> <!-- / text rating div -->
+                
+                
+                </div> <!-- / Ratings flexbox -->
+                
+                <!-- / Ratings Area -->
                
                 <!-- Price -->
                 
