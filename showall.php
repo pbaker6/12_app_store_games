@@ -3,6 +3,7 @@
 $find_sql="SELECT * FROM `tblgames`
 JOIN tblgenre ON (tblgames.genreID = tblGenre.genreID)
 JOIN tbldeveloper ON (tblgames.developerID = tbldeveloper.developerID)
+JOIN tblagerating ON (tblgames.ageratingID = tblagerating.ageratingID)
 
 ";
 $find_query=mysqli_query($dbconnect, $find_sql);
@@ -72,12 +73,14 @@ $count=mysqli_num_rows($find_query);
                 <div class="flex-container">
                     <!-- Partial Stars Original Source: https://codepen.io/Bluetidepro/pen/GkpEa -->
                     <div class="star-ratings-sprite">
+                        <span style="width:<?php echo $find_rs['gameUserRating']/5*100 ?>%" class="star-ratings-sprite-rating"></span>
                     
                     
                     </div> <!-- / Star rating div -->
                     
                     <div class="actual-rating"> 
-                        (<?php echo $find_rs['gameUserRating'] ?> rating based on # ratings)
+                        (<?php echo $find_rs['gameUserRating'] ?> rating based on 
+                        <?php echo number_format($find_rs['gameUserCount']) ?> ratings)
                     
                     
                     </div> <!-- / text rating div -->
@@ -124,6 +127,25 @@ $count=mysqli_num_rows($find_query);
                 ?>
                 
                 <!-- / Price -->
+                
+                <!-- Developer, Genre and Age -->
+                
+                <p>
+                    <b>Developer: </b>
+                    <?php echo $find_rs['developerName'] ?>     
+                    <br />
+                    
+                    <b>Genre: </b>
+                    <?php echo $find_rs['genreName'] ?>
+                    <br />
+                    Suitable for ages <b><?php echo $find_rs['ageRating'] ?></b> and up
+
+ 
+                </p>
+                    <hr />
+                    <?php echo $find_rs['gameDescription']?>  
+                
+                <!-- / Developer, Genre and Age -->
       
             </div> <!-- / results -->
             
