@@ -35,41 +35,83 @@ $count=mysqli_num_rows($find_query);
             
             <!-- Results go here -->
             <div class="results">
-                <span class="sub_heading">
-                    <a href="<?php echo $find_rs['gameURL']; ?>">
-                        <?php echo $find_rs['gameName']; ?>
-                        <br />
-                    </a>
-                </span> - <?php echo $find_rs['gameSubTitle']; ?>
                 
-                <p>
-                    <b>Genre: </b>
-                    <?php echo $find_rs['genreName'] ?>
-                    <br />
-                    <b>Developer: </b>
-                    <?php echo $find_rs['developerName'] ?>     
-                    <br />
-                    <b>Rating: </b>
-                    <?php echo $find_rs['gameUserRating'] ?>  
-                    (based on <?php echo $find_rs['gameUserCount'] ?> votes)
-                    <br />
-                    <b>Cost: $</b>
+                <!-- Heading and subtitle -->
                 
+                <div class="flex-container">
+                    <div>
+                        <span class="sub_heading">
+                            <a href="<?php echo $find_rs['gameURL']; ?>">
+                                <?php echo $find_rs['gameName']; ?>
+                            </a>
+                        </span>
+                    </div> <!-- / Title -->
+                    
+                    <?php
+                        if($find_rs['gameSubTitle'] != "")
+                        
+                        { 
+                    ?>
+                    <div>
+                        
+                        &nbsp; &nbsp; | &nbsp; &nbsp;
+
+                        <?php echo $find_rs['gameSubTitle'] ?>
+                    </div> <!-- / subtitle -->
+                    
+                    <?php
+                
+                        }
+                    ?>
+                
+                </div>  <!-- / flex-container -->
+                
+                <!-- / Heading and subtitle -->
+               
+                <!-- Price -->
+                
+                <?php 
+                    
+                    if($find_rs['gamePrice'] == 0) {
+                        ?>
+                
+                    <p>
+                        Free!
+                        <?php
+                            if($find_rs['gameInAppPurchase'] == 1)
+                            {
+                                ?>
+                                    (In App Purchase)
+                                <?php
+                            } //end In App if
+                        ?>
+                        
+                    </p>
+                
+                    <?php
+                    } // end price if
+                    
+                    else {
+                                                
+                        ?>
+                <br/>
+                    <b>Price: $</b>
                     <?php echo $find_rs['gamePrice'] ?>   
                     <br />
-                    <b>In-app purchases: </b>
-                    <?php echo $find_rs['gameInAppPurchase'] 
-                    ?>  
-                </p>
-                    <hr />
-                    <?php echo $find_rs['gameDescription']?>                             
+                
+                <?php
+                
+                } // end price else (displays price)
+                ?>
+                
+                <!-- / Price -->
+      
             </div> <!-- / results -->
             
             <br />
             
 
             <?php
-            
                 } //end results 'do'
                 while
                         ($find_rs=mysqli_fetch_assoc($find_query));

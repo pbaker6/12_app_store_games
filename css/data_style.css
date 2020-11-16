@@ -143,6 +143,10 @@ a.side:hover {color:#8f5f14; }
     }
 
 
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
 
 
 

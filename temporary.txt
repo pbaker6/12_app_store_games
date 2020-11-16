@@ -1,0 +1,20 @@
+          <p>
+                    <b>Genre: </b>
+                    <?php echo $find_rs['genreName'] ?>
+                    <br />
+                    <b>Developer: </b>
+                    <?php echo $find_rs['developerName'] ?>     
+                    <br />
+                    <b>Rating: </b>
+                    <?php echo $find_rs['gameUserRating'] ?>  
+                    (based on <?php echo $find_rs['gameUserCount'] ?> votes)
+                    <br />
+                    <b>Price: $</b>
+                
+                    <?php echo $find_rs['gamePrice'] ?>   
+                    <br />
+                    <b>In-app purchases: </b>
+                    <?php echo $find_rs['gameInAppPurchase'] ?>  
+                </p>
+                    <hr />
+                    <?php echo $find_rs['gameDescription']?>                             
