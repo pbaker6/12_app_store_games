@@ -1,10 +1,12 @@
           <p>
-                    <b>Genre: </b>
-                    <?php echo $find_rs['genreName'] ?>
-                    <br />
                     <b>Developer: </b>
                     <?php echo $find_rs['developerName'] ?>     
                     <br />
+                    
+                    <b>Genre: </b>
+                    <?php echo $find_rs['genreName'] ?>
+                    <br />
+
                     <b>Rating: </b>
                     <?php echo $find_rs['gameUserRating'] ?>  
                     (based on <?php echo $find_rs['gameUserCount'] ?> votes)

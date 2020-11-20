@@ -1,7 +1,7 @@
 body {
     margin: auto;
     padding: 50px;
-    color: #000;
+    color: #000; /* black */
     font-family: 'Lato', sans-serif;
 }
 
@@ -15,8 +15,8 @@ body {
 
 /* message styling if grid not supported */
 .message {
-    background-color: #333;
-    color: #fff;
+    background-color: #333; /* dark charcoal */
+    color: #fff; /* white */
     padding: 10px;
 }
 
@@ -24,14 +24,14 @@ body {
 /* Set up grid */
 .wrapper {
     display: grid;
-    grid-template-columns: 300px;
+    grid-template-columns: 320px;
     grid-template-rows: auto;
     grid-template-areas: 
         "logo banner"
         "side main"
         "foot foot";
         
-    background-color: #fff;
+    background-color: #fff; /* white */
     grid-gap: 4px;
     }
 
@@ -77,7 +77,7 @@ body {
 
 .main {
     grid-area: main;
-    color: #000;
+    color: #000; /* black */
 }
 
 .side {
@@ -88,8 +88,8 @@ body {
 .footer {
     grid-area: foot;
     text-align: right;
-    color: #fff;
-    background-color: #636263;
+    color: #fff; /* white */
+    background-color: #636263; /* grey */
 }
 
 
@@ -99,9 +99,14 @@ h1, h2, h3, h4 {
     font-family: 'Ubuntu', sans-serif;
 }
 
+/****.heading{
+    text-align: center;
+}
+****/
+
 .sub_heading {
     font-family: 'Ubuntu', sans-serif;
-    color: #264306;
+    color: #264306; /* dark green */
     font-weight: bold;
 }
 
@@ -109,9 +114,9 @@ h1, h2, h3, h4 {
 
 /* links in page */
 
-a:link{color: #264306;}
-a:visited{color: #5b7f31;}
-a:hover{color: #8f5f14;}
+a:link{color: #264306;} /* dark green */
+a:visited{color: #5b7f31;} /* mid green */
+a:hover{color: #8f5f14;} /* mid brown */
 
 /* side links */
 a.side {
@@ -119,25 +124,25 @@ a.side {
     font-size: 100%;
     text-decoration: none;
 }
-a.side:link {color: #264306;}
-a.side:visited {color: #5b7f31;}
-a.side:hover {color:#8f5f14; }
+a.side:link {color: #264306;} /* dark green */
+a.side:visited {color: #5b7f31;} /* mid green */
+a.side:hover {color:#8f5f14; } /* mid brown */
 
 
 /**** Results ****/
 
 .results {
-    background-color: #f4ebe1;
+    background-color: #f4ebe1; /* pinky cream */
     border-radius: 10px;
-    border: 1px solid #000;
+    border: 1px solid #000; /* black */
     padding: 5px;
 }
 
 
 .error {
-    background-color: #ffe0ed;
-    border: 2px solid #8a1737;
-    color: #8a1737;
+    background-color: #ffe0ed; /* pink */
+    border: 2px solid #8a1737; /* dark red */
+    color: #8a1737; /* dark red */
     border-radius: 5px;
     padding: 20px;
     }
@@ -172,10 +177,88 @@ a.side:hover {color:#8f5f14; }
     display: block;
 }
 
+/* Side Form formatting */
+.searchform{
+    width: 300px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
 
+.search{
+    padding: 8px 15px;
+    background: #fff; /* white */
+    width: 300px;
+    border-radius: 5px 0 0 5px;
+        
+}
 
+.submit{
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    position: relative;
+    width: 45px;
+    background-color: #636263; /* grey */
+    color: #d6d3d7;/* light grey */
+    border: 1px solid #636263; /* grey */
+    border-radius: 0 5px 5px 0;
+}
 
+input[type="submit"]:hover{background-color: #000;} /* black */
 
+input.search[type=text], select {
+    width: 225px;
+    border: 1px solid #636263;
+}
 
+input{
+    height: 40px;
+    padding: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
 
+select{
+    height: 40px;
+}
 
+.free {
+    width: 273px;
+    border-radius: 5px;
+    font-size: 105%;
+}
+
+.advanced-frame{
+    border-radius: 10px;
+    background-color: #f4ff7c; /* pale yellow */
+    border: solid 1px #4f570b; /* mid green */
+    padding: 5px;
+    
+}
+
+.advanced-button{
+    margin: auto;
+    width: 88%;
+    border-radius: 5px;
+    background-color: #2f480d; /* darker green */
+    font-size: 105%;
+}
+
+.adv {
+    width: 88%;
+    margin-bottom: 5px;
+    border: 1px solid #636263; /* grey */
+}
+.half-adv {
+    width: 80%;
+    margin-bottom: 5px;
+    border: 1px solid #636263; /* grey */
+}
+.adv-txt{
+    vertical-align: middle;
+    margin: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+        
+}
