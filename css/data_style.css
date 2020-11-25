@@ -186,7 +186,7 @@ a.side:hover {color:#8f5f14; } /* mid brown */
 }
 
 .search{
-    padding: 8px 15px;
+    padding: 8px 5px;
     background: #fff; /* white */
     width: 300px;
     border-radius: 5px 0 0 5px;
@@ -244,6 +244,22 @@ select{
     font-size: 105%;
 }
 
+.small-drop-down{
+    width: 100%;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    border: 1px solid #636263; /* grey */
+    padding: 5px;
+    background: #fff; /* white */
+    border-radius: 5px 0 0 5px;
+}
+.small-qty{
+    width: 75%;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #636263; /* grey */
+}
+
 .adv {
     width: 88%;
     margin-bottom: 5px;
@@ -259,6 +275,5 @@ select{
     margin: auto;
     margin-right: 10px;
     margin-left: 10px;
-    
-        
+         
 }

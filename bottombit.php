@@ -86,7 +86,7 @@
                        </div> <!-- / rating label -->
                        
                        <div>
-                           <select class="search adv" name="rate_more_less">
+                           <select class="small-drop-down" name="rate_more_less">
                                <option value="" >Choose...</option>
                                <option value="at least">At Least</option>
                                <option value="at most">At Most</option>
@@ -94,7 +94,7 @@
                        </div> <!-- / rating drop down -->
                        
                        <div>
-                           <input class="adv" type="text" name="rating" size="2" value="" placeholder=""/>
+                           <input class="small-qty" type="text" name="rating" size="4" value="" placeholder=""/>
                        
                        </div> <!-- / rating amount -->
                    
@@ -107,7 +107,7 @@
                        </div> <!-- / age label -->
                        
                        <div>
-                           <select class="search adv" name="age_more_less">
+                           <select class="small-drop-down" name="age_more_less">
                                <option value="" >Choose...</option>
                                <option value="at least">At Least</option>
                                <option value="at most">At Most</option>
@@ -115,7 +115,7 @@
                        </div> <!-- / age drop down -->
                        
                        <div>
-                           <input class="adv" type="text" name="age" size="4" value="" placeholder=""/>
+                           <input class="small-qty" type="text" name="age" size="4" value="" placeholder=""/>
                        
                        </div> <!-- / age amount -->
                    
