@@ -218,10 +218,24 @@ input{
     box-sizing: border-box;
 }
 
+/* Ensures that text is next to checkbox in advanced search form */
+input[type = "checkbox"]{
+    display: inline;
+    width: auto;
+}
+
+/* Puts radio buttons next to each other in add entry form */
+input[type = "radio"] {
+    height: 0;
+    width: auto;
+    display: inline;  
+}
+/* Controls the height of options in dropdown menus */
 select{
     height: 40px;
 }
 
+/* submit button for "Free, No In-App Purchase" */
 .free {
     width: 273px;
     border-radius: 5px;
@@ -235,7 +249,7 @@ select{
     padding: 5px;
     
 }
-
+/* Submit button for advanced serch and entr form */
 .advanced-button{
     margin: auto;
     width: 88%;
@@ -274,6 +288,10 @@ select{
     vertical-align: middle;
     margin: auto;
     margin-right: 10px;
-    margin-left: 10px;
-         
+    margin-left: 10px;       
+}
+/* Extra Add Entry styling */
+.add-entry{
+    max-width: 550px;
+    margin: auto;
 }
