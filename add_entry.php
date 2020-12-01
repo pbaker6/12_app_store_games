@@ -57,7 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     // if there are no errors...
     if ($has_errors == "no"){
         
-        // Go to success page...   
+        // Go to success page... 
+        header('Location: add_success.php');
         
         // Get developer ID if it exists...
         $dev_sql = "SELECT * FROM `tbldeveloper` WHERE `developerName` LIKE '$dev_name'";
@@ -84,6 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }  // end adding developer to developer table
 
         // Add entry to database
+        $addentry_sql = "INSERT INTO `tblgames` (`gameID`, `gameName`, `gameSubTitle`, `gameURL`, `genreID`, `developerID`, `ageRatingID`, `gameUserRating`, `gameUserCount`, `gamePrice`, `gameInAppPurchase`, `gameDescription`) VALUES (NULL, '$app_name', '$subtitle', '$url', $genreID, $developerID, $age, $rating, $rate_count, $cost, $in_app, 'description');";
+        $addentry_query = mysqli_query($dbconnect, $addentry_sql);
         
         }  // End of 'no errors' if
             
@@ -105,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     <input class="add-field" type="text" name="subtitle" size="40" value="<?php echo $subtitle; ?>" placeholder="Subtitle (optional) ..." />  
 
                     <!-- URL (Required, must start with http://) -->
-                    <input class="add-field <?php echo $url_field; ?>" type="text" name="url" size="40" value="<?php echo $url; ?>" placeholder="App Name (required) ..." /> 
+                    <input class="add-field <?php echo $url_field; ?>" type="text" name="url" size="40" value="<?php echo $url; ?>" placeholder="URL (required) ..." /> 
                     
                     <!-- Genre dropdown (required) -->
                     <select class="adv" name="genre">
