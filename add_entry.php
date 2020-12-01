@@ -83,9 +83,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $developerID = $newdev_rs['developerID'];
             
         }  // end adding developer to developer table
+        
+        // Get ageRatingID if it exists...
+        $age_sql = "SELECT * FROM `tblagerating` WHERE `ageRating` LIKE '$age'";
+        $age_query = mysqli_query($dbconnect, $age_sql);
+        $age_rs = mysqli_fetch_assoc($age_query);
+        $age_count = mysqli_num_rows($age_query);
+
+        // If age rating not already in age rating table, add it and get the 'new' ageRatingID
+        if ($age_count > 0) {
+            $ageRatingID = $age_rs['ageRatingID'];
+        }
+        
+        else {
+            $add_age_sql = "INSERT INTO `tblagerating` (`ageRatingID`, `ageRating`) VALUES (NULL, '$age');";
+            $add_age_query = mysqli_query($dbconnect, $add_age_sql);
+            
+            // Get age ID
+            $newage_sql = "SELECT * FROM `tblagerating` WHERE `ageRating` LIKE '$age'";
+            $newage_query = mysqli_query($dbconnect, $newage_sql);
+            $newage_rs = mysqli_fetch_assoc($newage_query);
+            
+            $ageRatingID = $newage_rs['ageRatingID'];
+            
+        }  // end adding developer to developer table
 
         // Add entry to database
-        $addentry_sql = "INSERT INTO `tblgames` (`gameID`, `gameName`, `gameSubTitle`, `gameURL`, `genreID`, `developerID`, `ageRatingID`, `gameUserRating`, `gameUserCount`, `gamePrice`, `gameInAppPurchase`, `gameDescription`) VALUES (NULL, '$app_name', '$subtitle', '$url', $genreID, $developerID, $age, $rating, $rate_count, $cost, $in_app, 'description');";
+        $addentry_sql = "INSERT INTO `tblgames` (`gameID`, `gameName`, `gameSubTitle`, `gameURL`, `genreID`, `developerID`, `ageRatingID`, `gameUserRating`, `gameUserCount`, `gamePrice`, `gameInAppPurchase`, `gameDescription`) VALUES (NULL, '$app_name', '$subtitle', '$url', $genreID, $developerID, $ageRatingID, $rating, $rate_count, $cost, $in_app, 'description');";
         $addentry_query = mysqli_query($dbconnect, $addentry_sql);
         
         }  // End of 'no errors' if
