@@ -225,10 +225,11 @@ input[type = "checkbox"]{
 }
 
 /* Puts radio buttons next to each other in add entry form */
-input[type = "radio"] {
-    height: 0;
+input[type ="radio"] {
+    background-color: #red;
+    height: 12px;
     width: auto;
-    display: inline;  
+    display: inline;
 }
 /* Controls the height of options in dropdown menus */
 select{
@@ -295,3 +296,10 @@ select{
     max-width: 550px;
     margin: auto;
 }
+.add-field{
+    margin: auto;
+    margin-bottom: 5px;
+    width: 88%;
+    border-radius: 5px;
+}
+
