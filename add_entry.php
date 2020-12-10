@@ -21,7 +21,10 @@ $description = "";
 
 $has_errors = "no";
 
+// set up error field colours / visibility (no errors first)
+$app_error = $url_error = $dev_error = $description_error = $genre_error = "no-error";
 
+$app_field = $url_field = $dev_field = $description_field = $genre_field = "form-ok";
 
 //Code below executes when the form is submitted...
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -53,6 +56,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $description = mysqli_real_escape_string($dbconnect, $_POST['description']);
     
     // error checking will go here...
+    
+    // Check App Name is not blank
+    if ($app_name == ""){
+        $has_errors = "yes";
+        $app_error = "error-text";
+        $app_field = "form-error";
+    }
+    
+    // Check URL is not blank
+    if ($url == ""){
+        $has_errors = "yes";
+        $url_error = "error-text";
+        $url_field = "form-error";
+    }
+    
+    // Check Genre is not blank
+    if ($genreID == ""){
+        $has_errors = "yes";
+        $genre_error = "error-text";
+        $genre_field = "form-error";
+    }
+    
+    // Check Developer is not blank
+    if ($dev_name == ""){
+        $has_errors = "yes";
+        $dev_error = "error-text";
+        $dev_field = "form-error";
+    }
+    
+    // Check Description is not blank
+    if ($description  == ""){
+        $has_errors = "yes";
+        $description_error = "error-text";
+        $description_field = "form-error";
+    }
     
     // if there are no errors...
     if ($has_errors == "no"){
@@ -106,15 +144,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             
             $ageRatingID = $newage_rs['ageRatingID'];
             
-        }  // end adding developer to developer table
+        }  // end adding age to tblagerating
 
         // Add entry to database
-        $addentry_sql = "INSERT INTO `tblgames` (`gameID`, `gameName`, `gameSubTitle`, `gameURL`, `genreID`, `developerID`, `ageRatingID`, `gameUserRating`, `gameUserCount`, `gamePrice`, `gameInAppPurchase`, `gameDescription`) VALUES (NULL, '$app_name', '$subtitle', '$url', $genreID, $developerID, $ageRatingID, $rating, $rate_count, $cost, $in_app, 'description');";
+        $addentry_sql = "INSERT INTO `tblgames` (`gameID`, `gameName`, `gameSubTitle`, `gameURL`, `genreID`, `developerID`, `ageRatingID`, `gameUserRating`, `gameUserCount`, `gamePrice`, `gameInAppPurchase`, `gameDescription`) VALUES (NULL, '$app_name', '$subtitle', '$url', $genreID, $developerID, $ageRatingID, $rating, $rate_count, $cost, $in_app, '$description');";
+        
         $addentry_query = mysqli_query($dbconnect, $addentry_sql);
+        
+        // Get ID for next page
+        $getid_sql = "SELECT * FROM `tblgames` WHERE 
+        `gameName` LIKE '$app_name' 
+        AND `gameSubTitle` LIKE '$subtitle' 
+        AND `gameURL` LIKE '$url'
+        AND `genreID` LIKE $genreID
+        AND `developerID` LIKE $developerID
+        AND `ageRatingID` = $ageRatingID
+        AND `gameUserRating` = $rating
+        AND `gameUserCount` = $rate_count
+        AND `gamePrice` = $cost
+        AND `gameInAppPurchase` = $in_app
+        ";
+        $getid_query = mysqli_query($dbconnect, $getid_sql);
+        $getid_rs = mysqli_fetch_assoc($getid_query);
+        
+        $ID = $getid_rs['gameID'];
+        $_SESSION['gameID']=$ID;
+        
+        
+        
         
         }  // End of 'no errors' if
             
-        echo "You pushed the button";
+
     }   // end of Button Submitted code
 
     ?>
@@ -126,16 +187,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                     
                     <!-- App Name (Required) -->
-                    <input class="add-field" type="text" name="app_name" value="<?php echo $app_name; ?>" placeholder="App Name (required) ..." />
+                    <div class = "<?php echo $app_error; ?>">
+                        Please fill in the 'App Name' field
+                    </div>
+                    
+                    <input class="add-field <?php echo $app_field; ?>" type="text" name="app_name" value="<?php echo $app_name; ?>" placeholder="App Name (required) ..." />
                     
                     <!-- Subtitle (Optional) -->
                     <input class="add-field" type="text" name="subtitle" size="40" value="<?php echo $subtitle; ?>" placeholder="Subtitle (optional) ..." />  
 
                     <!-- URL (Required, must start with http://) -->
+                    <div class = "<?php echo $url_error; ?>">
+                        Please provide a valid URL
+                    </div>
+                    
                     <input class="add-field <?php echo $url_field; ?>" type="text" name="url" size="40" value="<?php echo $url; ?>" placeholder="URL (required) ..." /> 
                     
                     <!-- Genre dropdown (required) -->
-                    <select class="adv" name="genre">
+                    <div class = "<?php echo $genre_error; ?>">
+                        Please choose a genre                    
+                    </div>
+             
+                    <select class="adv <?php echo $genre_field; ?>"name="genre">
                         <!-- first / selected option -->
                         <?php
                         if($genreID==""){
@@ -173,6 +246,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     </select>
 
                     <!-- Developer Name (required) -->
+                    <div class = "<?php echo $dev_error; ?>">
+                        Developer name can't be blank
+                    </div>
+             
+                    
                     <input class="add-field <?php echo $dev_field; ?>" type="text" name="dev_name" size="40" value="<?php echo $dev_name; ?>" placeholder="Developer Name (required) ..." />                 
                                         
                     <!-- Age (Set to 0 if left blank) -->
@@ -217,6 +295,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <br />
                     <!-- Description (text area) -->
+                    <div class = "<?php echo $description_error; ?>">
+                        Please provide a valid description
+                    </div>
+             
                     <textarea class="add-field <?php echo $description_field?>" name="description"
                               placeholder="Description..." rows="6"><?php echo $description; ?></textarea>
                     
