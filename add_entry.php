@@ -17,7 +17,7 @@ $rating = "";
 $rate_count = "";
 $cost = "";
 $in_app = 1;
-$description = "";
+$description = "Please enter a description";
 
 $has_errors = "no";
 
@@ -64,8 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $app_field = "form-error";
     }
     
-    // Check URL is not blank
-    if ($url == ""){
+    // Check URL is valid...
+    // Remove all illiegal characters from a URL
+    $url = filter_var($url, FILTER_SANITIZE_URL);
+    
+    if (filter_var($url, FILTER_VALIDATE_URL) == false) {
         $has_errors = "yes";
         $url_error = "error-text";
         $url_field = "form-error";
@@ -85,11 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $dev_field = "form-error";
     }
     
-    // Check Description is not blank
-    if ($description  == ""){
+    // Check Description is not blank / 'Description required'
+    if ($description  == "" || $description == "Please enter a description"){
         $has_errors = "yes";
         $description_error = "error-text";
         $description_field = "form-error";
+        $description = "";
     }
     
     // if there are no errors...
@@ -300,7 +304,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
              
                     <textarea class="add-field <?php echo $description_field?>" name="description"
-                              placeholder="Description..." rows="6"><?php echo $description; ?></textarea>
+                              rows="6"><?php echo $description; ?></textarea>
                     
                     <!-- Submit button -->
                     <p>
