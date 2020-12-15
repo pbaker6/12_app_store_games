@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check that cost is a decimal > 0
     else if (!is_numeric($cost) || $cost < 0){
-        $cost_message = "The cost should be a number > or = 0";
+        $cost_message = "The cost should be a number > or = 0 (Do not include the $ symbol)";
         $has_errors = "yes"; // not sure that this line does anything
         $cost_error = "error-text";
         $cost_field = "form-error";
@@ -248,7 +248,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     <!-- URL (Required, must start with http://) -->
                     <div class = "<?php echo $url_error; ?>">
-                        Please provide a valid URL
+                        Please provide a valid URL (include the http://)
                     </div>
                     
                     <input class="add-field <?php echo $url_field; ?>" type="text" name="url" size="40" value="<?php echo $url; ?>" placeholder="URL (required) ..." /> 
